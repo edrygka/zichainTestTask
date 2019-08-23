@@ -1,0 +1,49 @@
+env:
+  node: true
+  es6: true
+  mocha: true
+parserOptions:
+  ecmaVersion: 8
+extends: 'eslint:recommended'
+plugins:
+  - mocha
+rules:
+  indent:
+    - error
+    - 2
+  linebreak-style:
+    - error
+    - unix
+  quotes:
+    - error
+    - single
+  semi:
+    - error
+    - never
+  no-unused-vars:
+    - error
+    - argsIgnorePattern: ^_
+  camelcase:
+    - error
+  array-bracket-spacing:
+    - error
+    - never
+  brace-style:
+     - error
+     - 1tbs
+  curly:
+     - error
+     - all
+  no-mixed-spaces-and-tabs:
+     - error
+  no-trailing-spaces:
+     - error
+  max-len:
+     - warn
+     - 80
+  eqeqeq:
+     - error
+     - smart
+  eol-last:
+     - warn
+     - always

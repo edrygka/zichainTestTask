@@ -1,0 +1,26 @@
+{
+  "name": "zichaintesttask",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "node server.js",
+    "eslint": "eslint *.js app/** apitests/** unittests/**",
+    "apitests": "NODE_ENV=apitests mocha --exit --timeout 15000 --bail=false --require supertest --recursive apitests",
+    "unitests": "NODE_ENV=unittests mocha --exit --timeout 15000 --bail=false --require supertest --recursive unittests"
+  },
+  "author": "Eduard",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "eslint": "^6.2.1",
+    "eslint-plugin-mocha": "^6.1.0",
+    "express": "^4.17.1",
+    "mocha": "^6.2.0",
+    "node-redis-scan": "^1.0.3",
+    "redis": "^2.8.0",
+    "shortid": "^2.2.14",
+    "supertest": "^4.0.2",
+    "util": "^0.12.1"
+  }
+}
