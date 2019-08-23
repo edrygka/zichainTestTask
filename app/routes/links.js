@@ -4,23 +4,28 @@ const utils = require('../lib/utils')
 const redis = require('../lib/redis')
 
 
-exports.add = async (req, res) => {
+exports.add = utils.asyncCatchErrors(async (req, res) => {
   const usersLink = req.body.usersLink
 
   //TODO: validation
   const matchingKeys = await redis.scan('*')
-  console.log(matchingKeys)
+  for (let key of matchingKeys) {
+    const longLink = await redis.get(key)
+    if (longLink === usersLink) {
+      throw new Error('Already exist')
+    }
+  }
 
   const shortLink = utils.createShortLink()
   await redis.set(shortLink, usersLink)
 
   res.send(shortLink)
-}
+})
 
-exports.get = async (req, res) => {
+exports.get = utils.asyncCatchErrors(async (req, res) => {
   const shortLink = utils.getShortLink(req)
 
   const usersLink = await redis.get(shortLink)
 
   res.redirect(usersLink)
-}
+})
