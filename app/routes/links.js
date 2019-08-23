@@ -12,14 +12,14 @@ exports.add = utils.asyncCatchErrors(async (req, res) => {
   for (let key of matchingKeys) {
     const longLink = await redis.get(key)
     if (longLink === usersLink) {
-      throw new Error('Already exist')
+      throw new Error(`This link already exist as ${key}`)
     }
   }
 
   const shortLink = utils.createShortLink()
   await redis.set(shortLink, usersLink)
 
-  res.send(shortLink)
+  res.json({link: shortLink})
 })
 
 exports.get = utils.asyncCatchErrors(async (req, res) => {

@@ -35,7 +35,6 @@ exports.asyncCatchErrors = (fn) => async (...args) => {
   try {
     await fn.apply(this, args)
   } catch (err) {
-    console.error(err)
     const next = (args.length === 5 ? args[2] : last(args)) || noop
     next(err)
   }
