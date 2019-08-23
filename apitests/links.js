@@ -6,7 +6,6 @@ const redis = require('../app/lib/redis')
 const app = require('../app')
 
 describe('Links', async () => {
-  //await redis.cleanDB()
   describe('POST /link/add/', () => {
 
     it('Should respond 200', () => {
